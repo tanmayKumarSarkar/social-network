@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Social Network</title>
+  </head>
+  <body>
+    <div class="container mt-3">
+        
+        <div class="row">
+          <div class="col-auto"><h3>Posts</h3></div>
+          <div class="col" style="overflow-x: scroll;">
+            <nav aria-label="...">
+              <ul class="pagination pagination-sm">
+                <!-- <li class="page-item"><a class="page-link" href="#">Previous</a></li> -->
+                  <% for(var i=1; i <= data.page.totalPages; i++) { %>
+                    <li class="page-item 
+                    <% if (data.page.currentPage == i) { %>
+                      disabled
+                    <% } %>">
+
+
+                    <form action="posts" method="get">
+                      <input type="hidden" placeholder="" name="id" value="<%= userid %>" required>
+                      <input type="hidden" placeholder="" name="pageno" value="<%= i %>" required>
+                      <input type="hidden" placeholder="" name="pagesize" value="<%= pagesize %>" required>
+                      <button type="submit" class="page-link"><%= i %></button>
+                    </form>
+
+                      <!-- <a class="page-link" href="#">
+                        <%= i %>
+                      </a> -->
+                    </li>
+                  <% } %>
+                <!-- <li class="page-item"><a class="page-link" href="#">Next</a></li> -->
+              </ul>
+            </nav>
+          </div>
+        </div>
+
+        <div class="mt-3">
+            <div class="">
+          
+              <div class="list-group">
+                <% data.posts.forEach(function(post){ %>
+                  <div class="row mb-1">
+                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start active">
+                      <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1"><%= post.title %></h5>
+                        <small><%= new Date(post.ts).toLocaleDateString("en-US", { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric' }) %></small>
+                      </div>
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                      <p class="mb-1"><%= post.body %></p>
+                      <small class="text-muted">Posted By : <%= post.name %></small>
+                      <span class="badge badge-primary badge-pill"> Like <%= post.like_count %></span>
+                      <span class="badge badge-danger badge-pill"> Dislike <%= post.dislike_count %></span>
+                    </a>
+                  </div>
+                <% }); %>
+                
+              </div>
+          
+            </div>
+
+            
+          </div>
+          
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>
