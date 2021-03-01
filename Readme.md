@@ -5,6 +5,8 @@ Starting Page: http://localhost:5000/
 
 GraphQL API : http://localhost:5000/graphql
 
+Express API: http://localhost:5000/api/v1
+
 Data Generation API: http://localhost:5000/api/v1/datagen/{all/user/post}
 
 
